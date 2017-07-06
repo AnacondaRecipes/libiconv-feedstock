@@ -4,6 +4,7 @@
 export CFLAGS="-fPIC $CFLAGS"
 
 ./configure --prefix=${PREFIX} \
+            --host=${HOST} \
             --enable-static \
             --disable-rpath
 

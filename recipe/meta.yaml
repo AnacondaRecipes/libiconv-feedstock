@@ -15,7 +15,7 @@ source:
     - configure.cmake.patch  # [win]
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win and py35]
   features:
     - vc9   # [win and py27]
@@ -31,6 +31,7 @@ requirements:
     - vc 10   # [win and py34]
     - vc 14   # [win and py35]
     - vc 14   # [win and py36]
+    - {{ compiler('c') }}
   run:
     - vc 9    # [win and py27]
     - vc 10   # [win and py34]
