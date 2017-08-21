@@ -1,9 +1,7 @@
 #!/bin/sh
 
-
-export CFLAGS="-fPIC $CFLAGS"
-
 ./configure --prefix=${PREFIX} \
+            --build=${BUILD} \
             --host=${HOST} \
             --enable-static \
             --disable-rpath
