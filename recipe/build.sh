@@ -8,7 +8,7 @@ export CFLAGS="-fPIC $CFLAGS"
             --enable-static \
             --disable-rpath
 
-make
+make -j${CPU_COUNT} ${VERBOSE_AT}
 make check
 make install
 
