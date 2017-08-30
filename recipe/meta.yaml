@@ -35,6 +35,14 @@ about:
   home: https://www.gnu.org/software/libiconv/
   license: GPL and LGPL
   summary: "Provides iconv for systems which don't have one (or that cannot convert from/to Unicode.)"
+  
+  description: |
+    This library provides an iconv() implementation, for use on systems which don't have one, 
+    or whose implementation cannot convert from/to Unicode.
+  doc_url: https://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.15/iconv.1.html
+  dev_url: http://git.savannah.gnu.org/cgit/libiconv.git/tree/
+  doc_source_url: 
+
 
 extra:
   recipe-maintainers:
