@@ -15,9 +15,13 @@ source:
     - configure.cmake.patch  # [win]
 
 build:
-  number: 5
+  number: 6
   features:
     - vc{{ vc }}       # [win]
+  run_exports:
+    # Pretty good recently, let's trust them.
+    #   https://abi-laboratory.pro/tracker/timeline/libiconv/
+    - {{ pin_subpackage('libiconv') }}
 
 requirements:
   build:
