@@ -16,6 +16,7 @@ source:
 
 build:
   number: 6
+  skip: True   # [linux]
   features:
     - vc{{ vc }}       # [win]
   run_exports:

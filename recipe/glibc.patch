@@ -1,13 +1,13 @@
-Code:
---- srclib/stdio.in.h.orig 2011-08-07 16:42:06.000000000 +0300
-+++ srclib/stdio.in.h 2013-01-10 15:53:03.000000000 +0200
-@@ -695,7 +695,9 @@
- /* It is very rare that the developer ever has full control of stdin,
-    so any use of gets warrants an unconditional warning.  Assume it is
-    always declared, since it is required by C89.  */
--_GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
-+#if defined(__GLIBC__) && !defined(__UCLIBC__) && (!defined(__GLIBC_PREREQ) || !__GLIBC_PREREQ(2, 16))
-+ _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
-+#endif
+diff --git a/srclib/stdio.in.h b/srclib/stdio.in.h
+index d706377..72ff11a 100644
+--- a/srclib/stdio.in.h
++++ b/srclib/stdio.in.h
+@@ -743,7 +743,7 @@ _GL_WARN_ON_USE (getline, "getline is unportable - "
+    so any use of gets warrants an unconditional warning; besides, C11
+    removed it.  */
+ #undef gets
+-#if HAVE_RAW_DECL_GETS && !defined __cplusplus
++#if defined(__GLIBC__) && !defined(__UCLIBC__) && (!defined(__GLIBC_PREREQ) || !__GLIBC_PREREQ(2, 16)) && HAVE_RAW_DECL_GETS && !defined __cplusplus
+ _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
  #endif
-
+ 
