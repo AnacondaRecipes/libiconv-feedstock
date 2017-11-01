@@ -15,6 +15,7 @@ source:
 
 build:
   number: 6
+  skip: True   # [linux]
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
