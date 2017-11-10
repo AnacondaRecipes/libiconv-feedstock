@@ -15,10 +15,8 @@ source:
     - configure.cmake.patch  # [win]
 
 build:
-  number: 6
+  number: 7
   skip: True   # [linux]
-  features:
-    - vc{{ vc }}       # [win]
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
@@ -27,7 +25,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - cmake   # [win]
+    - cmake    # [win]
 
 test:
   commands:
