@@ -21,7 +21,7 @@ source:
 
 build:
   number: 0
-  skip: True   # [linux]
+  skip: True   # [linux or win]
   detect_binary_files_with_prefix: False
   run_exports:
     # Pretty good recently, let's trust them.
