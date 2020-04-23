@@ -22,7 +22,7 @@ source:
 build:
   number: 0
   skip: True   # [linux]
-  skip_binary_prefix_replacement: True
+  detect_binary_files_with_prefix: False
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
