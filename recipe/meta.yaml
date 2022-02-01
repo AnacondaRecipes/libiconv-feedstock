@@ -34,9 +34,10 @@ requirements:
     - {{ compiler('c') }}
     - cmake     # [win]
     - ninja     # [win]
-    - m2-patch  # [win]
     - m2-gcc-libs  # [win]
     - make  # [unix]
+    - m2-patch  # [win]
+    - patch     # [not win]
   host:
 
 test:
