@@ -12,16 +12,9 @@ source:
       - CMakeLists.txt.patch  # [win]
       - config.h.patch  # [win]
       - configure.cmake.patch  # [win]
-  # Needed because we'd much rather pass `--enable-relocatable` to configure
-  #   than perform binary prefix replacement.
-  #   I believe this is missing from libiconv-1.16's autotooling:
-  # - url: https://raw.githubusercontent.com/coreutils/gnulib/master/build-aux/libtool-reloc
-  - url: ./libtool-reloc
-    sha256: feb8b0fcf40cea5d9f464713f657ef1867dbe72df9f793af187afa13d626c3a6
-    folder: libcharset/build-aux
 
 build:
-  number: 0
+  number: 1
   skip: True   # [linux or win]
   detect_binary_files_with_prefix: False
   run_exports:

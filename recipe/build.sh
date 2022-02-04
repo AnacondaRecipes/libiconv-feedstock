@@ -1,16 +1,20 @@
-#!/bin/sh
+#!/bin/bash
+
+set -x
 
 cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./build-aux/
 cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./libcharset/build-aux/
 
+mkdir -p $PREFIX/lib
+
 ./configure --prefix=${PREFIX}  \
             --host=${HOST}      \
-            --build=${BUILD}    \
+            --build=${HOST}    \
             --enable-static     \
-            --disable-rpath     \
-            --enable-relocatable
+            --disable-rpath
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
+
 make check
 make install
 
