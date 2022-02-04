@@ -15,8 +15,6 @@ source:
 
 build:
   number: 1
-  skip: True   # [linux or win]
-  detect_binary_files_with_prefix: False
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
