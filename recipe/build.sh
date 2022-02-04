@@ -1,5 +1,8 @@
 #!/bin/sh
 
+cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./build-aux/
+cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./libcharset/build-aux/
+
 ./configure --prefix=${PREFIX}  \
             --host=${HOST}      \
             --build=${BUILD}    \
