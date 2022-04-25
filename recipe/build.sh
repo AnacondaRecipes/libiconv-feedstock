@@ -24,7 +24,9 @@ make install
 if [[ ${HOST} =~ .*linux.* ]]; then
   chmod 755 ${PREFIX}/lib/libiconv.so.*
   chmod 755 ${PREFIX}/lib/libcharset.so.*
-  chmod 755 ${PREFIX}/lib/preloadable_libiconv.so
+  if [ -f ${PREFIX}/lib/preloadable_libiconv.so ]; then
+    chmod 755 ${PREFIX}/lib/preloadable_libiconv.so
+  fi
 fi
 
 # remove libtool files
