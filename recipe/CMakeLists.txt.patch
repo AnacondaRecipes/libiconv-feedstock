@@ -51,7 +51,7 @@
 +# libiconv
 +set ( SRC_LIBICONV
 +  lib/iconv.c
-+  lib/relocatable.c
++  lib/relocatable-stub.c
 +)
 +
 +add_library ( iconv SHARED ${SRC_LIBICONV} )
