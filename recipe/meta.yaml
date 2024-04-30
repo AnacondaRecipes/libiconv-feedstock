@@ -14,7 +14,7 @@ source:
       - configure.cmake.patch  # [win]
 
 build:
-  number: 2
+  number: 3
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
