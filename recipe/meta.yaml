@@ -17,11 +17,10 @@ source:
 
 build:
   number: 0
-  skip: True  # [linux].   # DEBUG #######
-  run_exports:
-    # Pretty good recently, let's trust them.
-    #   https://abi-laboratory.pro/tracker/timeline/libiconv/
-    - {{ pin_subpackage('libiconv') }}
+  # run_exports:
+  #   # Pretty good recently, let's trust them.
+  #   #   https://abi-laboratory.pro/tracker/timeline/libiconv/
+  #   - {{ pin_subpackage('libiconv') }}
 
 requirements:
   build:
@@ -29,11 +28,10 @@ requirements:
     - {{ compiler('c') }}
     - cmake <4  # [win]
     - ninja     # [win]
-    - m2-gcc-libs  # [win]
     - make      # [unix]
     - libtool   # [unix]
-    - automake  # [osx]
-    - autoconf  # [osx]
+    - automake  # [unix]
+    - autoconf  # [unix]
     - groff     # [osx]
     - gperf     # [osx]
 
