@@ -25,11 +25,15 @@ requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - cmake     # [win]
+    - cmake <4  # [win]
     - ninja     # [win]
     - m2-gcc-libs  # [win]
-    - make  # [unix]
-    - libtool  # [unix]
+    - make      # [unix]
+    - libtool   # [unix]
+    - automake  # [osx]
+    - autoconf  # [osx]
+    - groff     # [osx]
+    - gperf     # [osx]
 
 test:
   commands:
