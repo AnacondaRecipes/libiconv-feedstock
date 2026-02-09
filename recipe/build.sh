@@ -9,7 +9,8 @@ mkdir -p $PREFIX/lib
 
 ./configure --prefix=${PREFIX}  \
             --host=${HOST}      \
-            --build=${HOST}    \
+            --build=${BUILD}    \
+            --enable-shared     \
             --enable-static     \
             --disable-rpath
 

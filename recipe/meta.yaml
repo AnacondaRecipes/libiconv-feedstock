@@ -9,13 +9,15 @@ source:
   - url: https://ftp.gnu.org/pub/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
     sha256: 3b08f5f4f9b4eb82f151a7040bfd6fe6c6fb922efe4b1659c66ea933276965e8
     patches:
-      - glibc.patch  # [linux]
-      - CMakeLists.txt.patch  # [win]
-      - config.h.patch  # [win]
-      - configure.cmake.patch  # [win]
+      - patches/glibc.patch  # [linux]
+      - patches/CMakeLists.txt.patch  # [win]
+      - patches/config.h.patch  # [win]
+      - patches/configure.cmake.patch  # [win]
+      - patches/utf_8_mac.patch  # [osx]
 
 build:
   number: 0
+  skip: True  # [linux].   # DEBUG #######
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
