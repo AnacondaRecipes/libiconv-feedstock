@@ -1,12 +1,13 @@
-{% set version = "1.16" %}
+{% set name = "libiconv" %}
+{% set version = "1.18" %}
 
 package:
-  name: libiconv
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://ftp.gnu.org/pub/gnu/libiconv/libiconv-{{ version }}.tar.gz
-    sha256: e6a1b1b589654277ee790cce3734f07876ac4ccfaecbee8afa0b649cf529cc04
+  - url: https://ftp.gnu.org/pub/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: 3b08f5f4f9b4eb82f151a7040bfd6fe6c6fb922efe4b1659c66ea933276965e8
     patches:
       - glibc.patch  # [linux]
       - CMakeLists.txt.patch  # [win]
@@ -14,7 +15,7 @@ source:
       - configure.cmake.patch  # [win]
 
 build:
-  number: 3
+  number: 0
   run_exports:
     # Pretty good recently, let's trust them.
     #   https://abi-laboratory.pro/tracker/timeline/libiconv/
@@ -22,34 +23,39 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - cmake     # [win]
     - ninja     # [win]
     - m2-gcc-libs  # [win]
     - make  # [unix]
     - libtool  # [unix]
-    - m2-patch  # [win]
-    - patch     # [not win]
-  host:
 
 test:
   commands:
     - iconv --help  # [not win]
+    - test -f $PREFIX/lib/libiconv${SHLIB_EXT}         # [unix]
+    - test -f $PREFIX/lib/libcharset${SHLIB_EXT}       # [unix]
+    - if exist %LIBRARY_PREFIX%\share\man\man3\iconv* exit 1   # [win]
+    - if exist %LIBRARY_PREFIX%\share\doc\iconv* exit 1        # [win]
+    - if not exist %LIBRARY_PREFIX%\lib\iconv.lib exit 1       # [win]
+    - if not exist %LIBRARY_PREFIX%\lib\charset.lib exit 1     # [win]
+    - if not exist %LIBRARY_PREFIX%\bin\iconv.dll exit 1       # [win]
+    - if not exist %LIBRARY_PREFIX%\bin\charset.dll exit 1     # [win]
 
 about:
-  home: https://www.gnu.org/software/libiconv/
+  home: https://www.gnu.org/software/libiconv
   license: GPL-3.0-or-later
   license_file: 
     - COPYING
     - COPYING.LIB
   license_family: GPL3
   summary: "Provides iconv for systems which don't have one (or that cannot convert from/to Unicode.)"
-
   description: |
     This library provides an iconv() implementation, for use on systems which don't have one,
     or whose implementation cannot convert from/to Unicode.
   doc_url: https://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-{{ version }}/iconv.1.html
-  dev_url: https://git.savannah.gnu.org/cgit/libiconv.git/tree/
+  dev_url: https://git.savannah.gnu.org/cgit/libiconv.git/tree
 
 extra:
   recipe-maintainers:
