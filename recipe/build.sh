@@ -1,34 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-set -x
+set -euxo pipefail
 
-cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./build-aux/
-cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./libcharset/build-aux/
-
-mkdir -p $PREFIX/lib
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/libtool/build-aux/config.* ./build-aux
+cp $BUILD_PREFIX/share/libtool/build-aux/config.* ./libcharset/build-aux
 
 ./configure --prefix=${PREFIX}  \
             --host=${HOST}      \
             --build=${BUILD}    \
-            --enable-shared     \
             --enable-static     \
-            --disable-rpath
+            --disable-rpath     \
+            --enable-extra-encodings
 
-make -j${CPU_COUNT} ${VERBOSE_AT}
-
-make check
-make install
-
-# TODO :: Only provide a static iconv executable for GNU/Linux.
-# TODO :: glibc has iconv built-in. I am only providing it here
-# TODO :: for legacy packages (and through gritted teeth).
-if [[ ${HOST} =~ .*linux.* ]]; then
-  chmod 755 ${PREFIX}/lib/libiconv.so.*
-  chmod 755 ${PREFIX}/lib/libcharset.so.*
-  if [ -f ${PREFIX}/lib/preloadable_libiconv.so ]; then
-    chmod 755 ${PREFIX}/lib/preloadable_libiconv.so
-  fi
+if [[ "${target_platform}" == osx-* ]]; then
+    make -f Makefile.devel CC="${CC_FOR_BUILD}" CFLAGS="${CFLAGS}"
 fi
 
-# remove libtool files
-find $PREFIX -name '*.la' -delete
+make -j${CPU_COUNT}
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" != "1" ]]; then
+  make check
+fi
