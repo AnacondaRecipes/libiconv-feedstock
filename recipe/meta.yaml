@@ -55,7 +55,7 @@ outputs:
         - jq          # [unix]
         - pkg-config  # [win]
       commands:
-        - iconv --help  # [unix]
+        - iconv -l  # [unix]
         # Ensuring iconv executable is not present.
         # Otherwise the included license is wrong and should be GPL-3.0-only.
         - test ! -f ${PREFIX}/bin/iconv                   # [unix]

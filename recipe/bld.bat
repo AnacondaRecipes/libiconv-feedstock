@@ -1,19 +1,17 @@
-set CXXFLAGS=
-set CFLAGS=
+::set CXXFLAGS=
+::set CFLAGS=
 
 mkdir build
 pushd build
 
-cmake -GNinja -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DCMAKE_BUILD_TYPE=Release ..
+cmake %CMAKE_ARGS% -GNinja -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -D CMAKE_BUILD_TYPE=Release ..
 if errorlevel 1 exit 1
 
 ninja
 if errorlevel 1 exit 1
 
 :: Test.
-ctest -C Release
-if errorlevel 1 exit 1
-
-:: Install.
-ninja install
+if not "%CONDA_BUILD_SKIP_TESTS%"=="1" (
+  ctest -C Release
+)
 if errorlevel 1 exit 1
