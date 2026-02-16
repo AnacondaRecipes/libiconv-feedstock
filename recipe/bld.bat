@@ -1,6 +1,3 @@
-::set CXXFLAGS=
-::set CFLAGS=
-
 mkdir build
 pushd build
 

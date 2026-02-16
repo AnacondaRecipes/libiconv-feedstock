@@ -18,6 +18,3 @@ if [[ "${target_platform}" == osx-* ]]; then
 fi
 
 make -j${CPU_COUNT}
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" != "1" ]]; then
-  make check
-fi

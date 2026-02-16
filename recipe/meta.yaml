@@ -29,7 +29,7 @@ requirements:
     - gperf     # [osx]
     - libtool   # [unix]
     - cmake <4  # [win]
-    - ninja     # [win]
+    - ninja-base  # [win]
     - make      # [unix]
 
 outputs:
@@ -46,7 +46,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib('c') }}
         - cmake <4  # [win]
-        - ninja     # [win]
+        - ninja-base     # [win]
         - libtool   # [unix]
         - make      # [unix]
 
@@ -95,7 +95,7 @@ about:
   description: |
     This library provides an iconv() implementation, for use on systems which don't have one,
     or whose implementation cannot convert from/to Unicode.
-  doc_url: https://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-{{ version }}/iconv.1.html
+  doc_url: https://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.18/iconv.1.html
   dev_url: https://git.savannah.gnu.org/cgit/libiconv.git/tree
 
 extra:
